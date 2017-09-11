@@ -1,0 +1,25 @@
+.challenges-wrapper
+  .challenge
+    .challenge-head
+      .thumb-img
+        .user-name
+        = challenge.user.user_name
+      .time-ago
+        = time_ago_in_words challenge.created_at
+    .image.center-block
+      = link_to (image_tag challenge.image.url(:medium), class:'img-responsive'), challenge_path(challenge)
+    .challenge-bottom
+      .title
+        .title-content
+          .user-name
+            = challenge.user.user_name
+          = challenge.title
+      .comments{id: "comments_#{challenge.id}"}
+        - if challenge.comments
+          = render challenge.comments, challenge: challenge
+  .comment-like-form.row
+    .like-button.col-sm-1
+      %span(class="glyphicon glyphicon-heart-empty")
+    .comment-form.col-sm-11
+      = form_for ([challenge, challenge.comments.build]) do |f|
+        = f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{challenge.id}"
