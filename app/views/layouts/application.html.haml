@@ -7,10 +7,11 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', "https://fonts.googleapis.com/css?family=Archivo|Baloo+Da|Chango|Cutive+Mono|Della+Respira|Emblema+One|Fascinate|Holtwood+One+SC|Marko+One|Mitr|Pavanam|Pompiere|Stint+Ultra+Expanded|Stoke|Waiting+for+the+Sunrise", media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
 %body
   = render 'layouts/navbar'
-  
+
   .container
     -flash.each do |name, msg|
       = content_tag :div, msg, class: [:alert, alert_for(name)]

@@ -1,8 +1,8 @@
 class ChallengesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
-  before_action :owned_challenge, only: [:edit, :update, :destroy]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :challenger]
+  before_action :owned_challenge, only: [:destroy]
 
   def index
     @challenges = Challenge.all
@@ -15,16 +15,18 @@ class ChallengesController < ApplicationController
     @challenge = current_user.challenges.build
   end
 
-  
+  def challenger
+  end
+
 
   def create
-
     @challenge = current_user.challenges.build(challenge_params)
 
     if @challenge.save
       flash[:success] = "Your challenge has been created"
       redirect_to challenges_path
     else
+
       flash[:alert] = "Something went wrong?!? Check your form yo'!"
       render :new
     end
@@ -52,7 +54,7 @@ class ChallengesController < ApplicationController
   private
 
   def challenge_params
-    params.require(:challenge).permit(:image, :title)
+    params.require(:challenge).permit(:image, :title, :description, :criteria, :challenger_id)
   end
 
   def set_challenge

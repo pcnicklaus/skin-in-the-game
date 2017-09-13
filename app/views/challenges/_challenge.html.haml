@@ -1,13 +1,25 @@
 .challenges-wrapper
   .challenge
     .challenge-head
-      .thumb-img
-        .user-name
-        = challenge.user.user_name
+      .title
+        = challenge.title
       .time-ago
         = time_ago_in_words challenge.created_at
-    .image.center-block
-      = link_to (image_tag challenge.image.url(:medium), class:'img-responsive'), challenge_path(challenge)
+    .challenge-body
+      .col-md-5
+        .creator
+          = challenge.user.user_name
+          = link_to (image_tag challenge.user.avatar.url(:medium), class:'image')
+      .versus.col-md-2
+        =image_tag "vs.png", class: "versus"
+      .col-md-5
+        -if challenge.challenger_id?
+          .challenger
+            = User.find(challenge.challenger_id).user_name
+          = link_to (image_tag User.find(challenge.challenger_id).avatar.url(:medium), class:'image')
+        -else
+          .challenger
+            = link_to image_tag('qm.png', class:'image'), challenger_path(challenge)
     .challenge-bottom
       .title
         .title-content

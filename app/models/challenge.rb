@@ -1,9 +1,9 @@
 class Challenge < ApplicationRecord
 
   belongs_to :user
+
   has_many :comments, dependent: :destroy
 
-  validates :image, presence: true
   validates :user_id, presence: true
 
   has_attached_file :image, styles: { :medium => "640x" }
