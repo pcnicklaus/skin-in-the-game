@@ -1,4 +1,22 @@
 GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: 6f338aa2d7e3beb92db0cec5568aa8773351bfb8
+  branch: master
+  specs:
+    kaminari (1.0.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
+      actionview
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
+      activerecord
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
+
+GIT
   remote: https://github.com/haml/haml
   revision: d28c9e85b6a80165a3dc0e1cc872695d2faebb7e
   specs:
@@ -231,6 +249,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
+  kaminari!
   listen (>= 3.0.5, < 3.2)
   paperclip (~> 5.0.0)
   pg (~> 0.18)

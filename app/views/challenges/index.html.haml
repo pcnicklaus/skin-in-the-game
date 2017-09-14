@@ -1,2 +1,6 @@
-#challenges
-  = render @challenges
+.container-fluid
+  = image_tag('cta_two.png', class: "img img-responsive");
+  -@challenges.each do |challenge|
+    = render 'challenge', challenge: challenge
+
+  = paginate @challenges

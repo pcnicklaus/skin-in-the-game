@@ -1,11 +1,12 @@
+= render 'challengerlayout', challenge: @challenge, challenger_id: current_user.id
 .text-center
-  = image_tag @challenge.image.url(:medium)
   .form-wrapper
     = simple_form_for @challenge, html: { class: 'form-horizontal', multipart: true } do |f|
-      = image_tag current_user.avatar
       = hidden_field :challenge, :challenger_id, :value => current_user.id
-
-      .form-group.text-center
-        = f.input :criteria
-      .form-group.text-center
-        = f.button :submit, class: 'btn-success'
+      .col-md-1
+      .form-group.col-md-6
+        .form-group.text-center
+          = f.text_area :criteria, class: "form-control", placeholder: "What is/are your proposed acceptance criteria?"
+        .form-group.text-center
+          = f.button :submit, class: 'btn-success'
+          = link_to "Nope", root_path, type: :reset, class: "btn btn-lg btn-danger"

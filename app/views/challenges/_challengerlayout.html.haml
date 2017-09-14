@@ -1,0 +1,20 @@
+.challenge-head
+  .title
+    = challenge.title
+  .time-ago
+    = time_ago_in_words challenge.created_at
+.challenge-body
+  .col-md-5
+    .creator
+      .image
+        = link_to (image_tag challenge.user.avatar.url(:medium), class:'image'), profile_path(challenge.user.user_name)
+      .text
+        = challenge.user.user_name
+  .versus.col-md-2
+    =image_tag "vs.png", class: "versus"
+  .col-md-5
+    .challenger
+      .image
+        = image_tag User.find(challenger_id).avatar.url(:medium), class:'image'
+      .text
+        = User.find(challenger_id).user_name

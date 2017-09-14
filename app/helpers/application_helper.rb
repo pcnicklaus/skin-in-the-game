@@ -8,4 +8,13 @@ module ApplicationHelper
     }[flash_type.to_sym] || flash_type.to_s
   end
 
+  def profile_avatar_select(user)
+      return image_tag user.avatar.url(:medium),
+                       id: 'image-preview',
+                       class: 'img-responsive img-circle profile-image' 
+             image_tag 'default_friend.png', id: 'image-preview',
+                                      class: 'img-responsive img-circle profile-image'
+
+  end
+
 end

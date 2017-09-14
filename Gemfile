@@ -45,6 +45,11 @@ gem "paperclip", "~> 5.0.0"
 # https://github.com/plataformatec/simple_form
 gem 'simple_form'
 
+# https://github.com/kaminari/kaminari
+gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
+
+
+
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'jquery-turbolinks'

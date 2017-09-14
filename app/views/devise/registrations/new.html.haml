@@ -1,7 +1,7 @@
 .registration-bg
   .container
     .row
-      .col-md-4.col-md-offset-4
+      .col-md-6.col-md-offset-3
         .log-in.panel
           .panel-heading
             %h2 Create Your Account
@@ -9,8 +9,13 @@
             = f.error_notification
             .panel-body
               = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' }
+
               = f.input :user_name, required: true, label: false, placeholder: 'User Name', input_html: { class: 'input-lg' }
+
               = f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' }
               = f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' }
+
+              %h4 Upload an image of you (required)
+              = f.input :avatar, required: true, input_html: { class: 'btn-block btn-default input-lg' }
+              
               = f.button :submit, "Sign up", class: 'btn-lg btn-info btn-block'
-              = f.input :avatar

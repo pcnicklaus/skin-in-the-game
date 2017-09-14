@@ -1,0 +1,30 @@
+= link_to challenge_path(challenge), style: "text-decoration:none" do
+  .challenge-head
+    .title
+      = link_to challenge.title, challenge_path(challenge), style: "text-decoration:none"
+    .time-ago
+      = time_ago_in_words challenge.created_at
+
+.challenge-body
+  .col-md-5
+    .creator
+      .image
+        = link_to (image_tag challenge.user.avatar.url(:medium), class:'image'), profile_path(challenge.user.user_name)
+      .text
+        = challenge.user.user_name
+  .versus.col-md-2
+    =image_tag "vs.png", class: "versus"
+  .col-md-5
+    = current_user.id
+    = challenge.challenger_id
+    -if !challenge.challenger_id?
+      .challenger
+      = link_to image_tag('qm.png', class:'image'), challenger_path(challenge)
+    -else
+      .challenger
+        .image
+          = link_to (image_tag User.find(challenge.challenger_id).avatar.url(:medium), class:'image'), profile_path(User.find(challenge.challenger_id).user_name)
+
+        .text
+          = User.find(challenge.challenger_id).user_name
+    

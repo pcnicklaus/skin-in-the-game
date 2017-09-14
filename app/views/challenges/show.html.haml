@@ -1,9 +1,25 @@
 = render 'challenge', challenge: @challenge
+.challenge-bottom
+  .title
+    .title-content
+      .user-name
+        =link_to @challenge.user.user_name, profile_path(@challenge.user.user_name)
+      = @challenge.title
+  .comments{id: "comments_#{@challenge.id}"}
+    - if @challenge.comments
+      = render @challenge.comments, challenge: @challenge
+.comment-like-form.row
+  .like-button.col-sm-1
+    %span(class="glyphicon glyphicon-heart-empty")
+  .comment-form.col-sm-11
+    = form_for ([@challenge, @challenge.comments.build]) do |f|
+      = f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{@challenge.id}"
+
 - if @challenge.user.id == current_user.id
   .text-center.edit-links
-    = link_to "Cancel", challenges_path
+    = link_to "Cancel", root_path
     |
     = link_to "Edit Challenge", edit_challenge_path(@challenge)
 - else
   .text-center.edit-links
-    =link_to "Cancel", challenges_path
+    =link_to "Cancel", root_path

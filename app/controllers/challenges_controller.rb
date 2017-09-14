@@ -5,7 +5,9 @@ class ChallengesController < ApplicationController
   before_action :owned_challenge, only: [:destroy]
 
   def index
-    @challenges = Challenge.all
+    # @challenges = Challenge.all
+    # @challenges = Kaminari.paginate_array(@challenges).page(params[:page]).per(5)
+    @challenges = Challenge.all.order('created_at DESC').page params[:page]
   end
 
   def show
@@ -24,7 +26,7 @@ class ChallengesController < ApplicationController
 
     if @challenge.save
       flash[:success] = "Your challenge has been created"
-      redirect_to challenges_path
+      redirect_to root_path
     else
 
       flash[:alert] = "Something went wrong?!? Check your form yo'!"
@@ -35,14 +37,17 @@ class ChallengesController < ApplicationController
   def edit
   end
 
+
   def update
+
     if @challenge.update(challenge_params)
-      flash[:success] = "Oh yeah, that update feels nice... :)"
-      redirect_to challenges_path
-    else
-      flash[:alert] = "Update suffered catastrophic failure?!? Check your form yo'!"
-      render :edit
-    end
+        ChallengeMailer.challenge_email(@challenge).deliver_now
+        flash[:success] = "Post updated."
+        redirect_to root_path
+      else
+        flash[:alert] = "Update failed.  Please check the form."
+        render :edit
+      end
 
   end
 

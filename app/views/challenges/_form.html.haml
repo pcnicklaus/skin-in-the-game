@@ -1,12 +1,17 @@
 .form-wrapper
-  = simple_form_for @challenge, html: { class: 'form-horizontal', multipart: true } do |f|
-    .form-group
-      = f.input :image
-    .form-group.text-center
-      = f.input :title
-    .form-group.text-center
-      = f.input :description
-    .form-group.text-center
-      = f.input :criteria
-    .form-group.text-center
-      = f.button :submit, class: 'btn-success'
+  .container
+    .col-md-1
+    .col-md-5
+      = link_to (image_tag User.find(current_user.id).avatar.url(:medium), class: "img-responsive")
+    .col-md-1
+    .col-md-5
+      = simple_form_for @challenge, html: { class: "form-horizontal", multipart: true } do |f|
+        .form-group.text-center
+          = f.input :title, label: "Title for your Challenge"
+        .form-group.text-center
+          = f.input :description, label: "What is it? What do you have to do?"
+        .form-group.text-center
+          = f.input :criteria, label: "What's the acceptance criteria?"
+        .form-group.text-center
+          = f.button :submit, class: 'btn btn-lg btn-success'
+          = link_to "Nah...", root_path, type: :reset, class: 'btn btn-lg btn-danger'

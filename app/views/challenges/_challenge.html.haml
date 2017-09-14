@@ -1,37 +1,12 @@
 .challenges-wrapper
   .challenge
-    .challenge-head
-      .title
-        = challenge.title
-      .time-ago
-        = time_ago_in_words challenge.created_at
-    .challenge-body
-      .col-md-5
-        .creator
-          = challenge.user.user_name
-          = link_to (image_tag challenge.user.avatar.url(:medium), class:'image')
-      .versus.col-md-2
-        =image_tag "vs.png", class: "versus"
-      .col-md-5
-        -if challenge.challenger_id?
-          .challenger
-            = User.find(challenge.challenger_id).user_name
-          = link_to (image_tag User.find(challenge.challenger_id).avatar.url(:medium), class:'image')
-        -else
-          .challenger
-            = link_to image_tag('qm.png', class:'image'), challenger_path(challenge)
+    = render 'clayout', challenge: challenge
     .challenge-bottom
       .title
         .title-content
           .user-name
-            = challenge.user.user_name
+            =link_to challenge.user.user_name, profile_path(challenge.user.user_name)
           = challenge.title
       .comments{id: "comments_#{challenge.id}"}
         - if challenge.comments
-          = render challenge.comments, challenge: challenge
-  .comment-like-form.row
-    .like-button.col-sm-1
-      %span(class="glyphicon glyphicon-heart-empty")
-    .comment-form.col-sm-11
-      = form_for ([challenge, challenge.comments.build]) do |f|
-        = f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{challenge.id}"
+          = render challenge.comments.first(5), challenge: challenge
