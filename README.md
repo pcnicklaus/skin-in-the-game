@@ -1,24 +1,60 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To do
 
-Things you may want to cover:
+global
+	•	challenge has many acceptance criteria
+	•	layout / design
+	•	add fields
+  	⁃	user
+  	⁃	location
+  	⁃	interests
+  	⁃	challenge
+  	⁃	duration
+  	⁃	location
+  	⁃	needed things to complete
+  	⁃	approx cost
+  	⁃	time needed
+  	⁃	sponsors
+	•	Payment / venmo / paypal
+  	⁃	has_one :challenge???
+  	⁃	has_one :escrow_account???
+  	⁃	belongs_to :payer
 
-* Ruby version
+pages
+	•	about / why
+  	⁃	why fees
+  	⁃	charities
+	•	contact us
+  	⁃	sponsors
+  	⁃	donating businesses
+  	⁃	corporate challenges
 
-* System dependencies
+index
+	•	search
+  	⁃	live/open
+  	⁃	ongoing
+  	⁃	location
 
-* Configuration
+Show #challenge
+	•	Need the is this mine or not
+  	⁃	if so, show more
+	•	If not, less
 
-* Database creation
+New
+	•	kill cancel at bottom 	
 
-* Database initialization
+Profile
+	•	layout
+	•	new fields
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ICEBOX
+	•	betting / sponsoring
+	•	search
+	•	90% + charities
+	•	direct user challenges
+  	⁃	browse users
+	•	browse challenges
+	•	reviews
+	•
